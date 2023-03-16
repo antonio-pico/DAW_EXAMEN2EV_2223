@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace LotoClassNS
 {
@@ -60,11 +61,7 @@ namespace LotoClassNS
         {
             for (int i=0; i<MAX_NUMEROS; i++)
                 if (misnums[i]>=NUMERO_MENOR && misnums[i]<=NUMERO_MAYOR) {
-                    int j;
-                    for (j=0; j<i; j++) 
-                        if (misnums[i]==Nums[j])
-                            break;
-                    if (i==j)
+                    if (!NumeroEncontrado(misnums[i]))
                         Nums[i]=misnums[i]; // validamos la combinación
                     else {
                         CombinacionValida=false;
@@ -77,6 +74,17 @@ namespace LotoClassNS
                     return;
                 }
 	    CombinacionValida=true;
+        }
+
+        private bool NumeroEncontrado(int numero)
+        {
+            bool encontrado = false;
+
+            for (int i = 0; i < Nums.Length && !encontrado; i++)
+                if (numero == Nums[i])
+                    encontrado = true;
+
+            return encontrado;
         }
 
         /// <summary>
