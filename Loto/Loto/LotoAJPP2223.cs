@@ -12,7 +12,7 @@ namespace LotoClassNS
         public const int NUMERO_MAYOR = 49;
         
         private int[] _nums = new int[MAX_NUMEROS];   // numeros de la combinación
-        public bool ok = false;      // combinación válida (si es aleatoria, siempre es válida, si no, no tiene porqué)
+        private bool combinacionValida = false;      // combinación válida (si es aleatoria, siempre es válida, si no, no tiene porqué)
 
         /// <summary>
         /// Propiedad del campo _nums
@@ -22,6 +22,7 @@ namespace LotoClassNS
             get => _nums; 
             set => _nums = value; 
         }
+        public bool CombinacionValida { get => combinacionValida; set => combinacionValida = value; }
 
         /// <summary>
         /// Constructor vacío de la clase Loto
@@ -46,7 +47,7 @@ namespace LotoClassNS
                 }
             } while (i<MAX_NUMEROS);
 
-            ok=true;
+            CombinacionValida=true;
         }
 
         /// <summary>
@@ -66,16 +67,16 @@ namespace LotoClassNS
                     if (i==j)
                         Nums[i]=misnums[i]; // validamos la combinación
                     else {
-                        ok=false;
+                        CombinacionValida=false;
                         return;
                     }
                 }
                 else
                 {
-                    ok=false;     // La combinación no es válida, terminamos
+                    CombinacionValida=false;     // La combinación no es válida, terminamos
                     return;
                 }
-	    ok=true;
+	    CombinacionValida=true;
         }
 
         /// <summary>
